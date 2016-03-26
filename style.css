@@ -1,5 +1,5 @@
 .track {
-    height: 150px;
+    height: 140px;
     background-color: white;
 }
 
@@ -16,12 +16,8 @@ body  {
 }
 
 .car {
+    margin: 30px;
+    position: relative;;
     height: 75px;
     width: 75px;
 }
-
-/*.car2 {
-    height: 75px;
-    width: 75px;
-    background-color: turquoise;
-}*/
