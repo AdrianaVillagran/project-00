@@ -19,16 +19,9 @@ $(document).on('ready', function() {
 
     $('.playerEntry').append(playerHTML);
 
-    //Function for player to drive
-    // playerOne.drive();
-    // playerTwo.drive();
-    $(window).on('keydown', function moveRight(event) {
-      if (event.keyCode === 48) {
-        playerOne.drive();
-      } else if (event.keyCode === 49) {
-        playerTwo.drive();
-      }
-    });
+    //Function for players to drive
+    playerOne.drive();
+    playerTwo.drive();
 
 });
 
@@ -38,7 +31,15 @@ function Player(id, wins, color, keyButton) {
   this.color = color;
   this.keyButton = keyButton;
   //Function below doesn't work and I don't know why
+  //When I type $("#player-one") into my console it returns the correct div
+  //I even tried $('h1').append('"#' + id + '"'); to make sure my string was right
   this.drive = function () {
+    $(window).on('keydown', function moveRight(event) {
+      if (event.keyCode === keyButton) {
         $('"#' + id + '"').animate({"left": "+=10px" }, 0);
+      }
+    });
+
+
   };
 }
