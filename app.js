@@ -8,9 +8,10 @@ $(document).on('ready', function() {
     var template = Handlebars.compile(source);
 
     /*Create player object and run through template*/
-    var playerOne = new Player("player-one", 0, "hotpink", 48, 0);
-    var playerTwo = new Player("player-two", 0, "turquoise", 49, 0);
-    var playersArray = [playerOne, playerTwo];
+    var hotpink = new Player("The pink square", "player-one", 0, "hotpink", 48, 0);
+    console.log(hotpink);
+    var turquoise = new Player("The turquoise square", "player-two", 0, "turquoise", 49, 0);
+    var playersArray = [hotpink, turquoise];
 
 
     var playerHTML = template({ players: playersArray });
@@ -20,62 +21,44 @@ $(document).on('ready', function() {
     $('.playerEntry').append(playerHTML);
 
     //Function for players to drive
-    playerOne.drive();
-    playerTwo.drive();
+    hotpink.drive();
+    turquoise.drive();
 
-    playerOne.reset();
-    playerTwo.reset();
-
-
+    hotpink.reset();
+    turquoise.reset();
 
 
 });
 
-function Player(id, wins, color, keyButton, initialPosition) {
+//Player object constructor function
+function Player(name, id, wins, color, keyButton, initialPosition) {
+  this.name = name;
   this.id = id;
   this.wins = wins;
   this.color = color;
   this.keyButton = keyButton;
-  this.initialPosition = initialPosition;
-  this.setNewPosition = function() {
-    console.log("hi");
-  };
-    // var position = $("#" + id).position();
-    // var percentLeft = Math.floor(position.left/$(window).width() * 100);
-    // if (percentLeft === 85) {
-    //   alert("You won!");
 
-
+  //function that moves player forward, checks for win, & updates number of player wins
   this.drive = function () {
-
-    $(window).on('keydown', function moveRight(event) {
-      var leftPosition = $("#" + id).offset().left;
+  $(window).on('keydown', function moveRight(event) {
+      var winner;
+      var leftPosition = $("#" + id).offset().left - ( ( $(window).width() - $('.track').width() ) / 2 ) ;
       if (event.keyCode === keyButton) {
-         $("#" + id).animate({"left": "+=10" }, 0, "linear", checkForWinner() );
+         $("#" + id).animate({"left": "+=10" }, 0);
+            if(leftPosition >= $('.track').width() - $("#" + id).width()){
+              alert(name + " wins!");
+              wins++;
+              console.log(wins);
+            }
          }
       });
   };
 
+  //resets player position to start a new race
   this.reset = function() {
-    $(window).on('click', function startOver(event) {
+    $(".btn").on('click', function startOver(event) {
       $("#" + id).css({left: 0});
     });
 
   };
-}
-
-
-
-function checkForWinner() {
-  var $playerOne = $("#player-one");
-  var playerOnePosition = $playerOne.offset().left - ( ( $(window).width() - $('.track').width() ) / 2 );
-  var $playerTwo = $("#player-two");
-  var playerTwoPosition = $playerTwo.offset().left - ( ( $(window).width() - $('.track').width() ) / 2 );
-
-  if (playerOnePosition  >= $('.track').width() - $playerOne.width()) {
-   alert("Player One Wins");
- } else if (playerTwoPosition  >= $('.track').width() - $playerTwo.width()) {
-   alert("Player Two Wins");
- }
-
 }
