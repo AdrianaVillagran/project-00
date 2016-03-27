@@ -24,22 +24,32 @@
   <title>Racing Game</title>
 </head>
 <body>
+
   <div class="container">
+
     <div class="row">
-      <div class="col-sm-6 col-sm-offset-3">
+
+      <div class="col-xs-6 col-xs-offset-3">
         <h1 class="text-center">Simple Racing Game</h1>
+
       </div>
+
     </div>
 
     <div class="playerEntry">
+      <!-- <div class="finish"></div> -->
       <script id="player-template" type="text/x-handlebars-template">
         {{#each players}}
-          <div class="row track">
+          <div class="track">
             <div id="{{id}}" class="car" style="background-color:{{color}};"></div>
           </div>
         {{/each}}
       </script>
+
     </div>
+
+
   </div>
+
 </body>
 </html>
