@@ -41,17 +41,19 @@ function Player(name, id, number, wins, color, keyButton) {
         var leftEdge = ( $(window).width() - $('.track').width() ) / 2;
         var position = $("#" + id).offset().left -  leftEdge;
         var endOfTrack = $('.track').width() - $("#" + id).width();
-        if (event.keyCode === keyButton) {
-           $("#" + id).animate({"left": "+=10" }, 0);
-           if(position >= endOfTrack){
-                alert(name + " wins!");
-                wins++;
-                $("#" + id).html('<h1 class="text-center">' + wins + '</h1>');
+        if (position <= endOfTrack && event.keyCode === keyButton) {
+             $("#" + id).animate({"left": "+=10" }, 0);
+             if(position >= endOfTrack){
+                  alert(name + " wins!");
+                  wins++;
+                  $("#" + id).html('<h1 class="text-center">' + wins + '</h1>');
 
-                //hide cars to display win sequence
-                 $('.car').hide();
-           }
-        }
+                  //hide cars to display win sequence
+                   $('.car').hide();
+             }
+          }
+        
+
     });
   };
 
