@@ -9,7 +9,7 @@
 * jQuery
 * HTML
 * CSS
-* Javascript (Mainly Object Constructor Functions)
+* Javascript 
 
 
 ## Existing Features

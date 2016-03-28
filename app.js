@@ -44,9 +44,11 @@ function Player(name, id, number, wins, color, keyButton) {
         if (position <= endOfTrack && event.keyCode === keyButton) {
              $("#" + id).animate({"left": "+=10" }, 0);
              if(position >= endOfTrack){
-                  alert(name + " wins!");
+                  winner = name;
+                  alert(winner + " wins!");
                   wins++;
                   $("#" + id).html('<h1 class="text-center">' + wins + '</h1>');
+                
              }
           }
 
