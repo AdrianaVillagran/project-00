@@ -3,7 +3,6 @@
     background-color: white;;
     margin-bottom: 20px;
     padding: 20px 10px;
-
 }
 
 h1 {
@@ -11,13 +10,6 @@ h1 {
   font-size: 30px;
   font-family: 'Exo', sans-serif;
   margin-bottom: 20px
-
-}
-
-h3 {
-  color: lightgrey;
-  left: 40%;
-  font-family: 'Exo', sans-serif;
 
 }
 
@@ -45,8 +37,4 @@ body  {
 .reset:hover {
   background-color: lightblue;
   color: blue;
-}
-
-.hide {
-  display:none;
 }
