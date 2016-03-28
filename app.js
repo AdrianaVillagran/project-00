@@ -8,57 +8,63 @@ $(document).on('ready', function() {
     var template = Handlebars.compile(source);
 
     /*Create player object and run through template*/
-    var hotpink = new Player("The pink square", "player-one", 0, "hotpink", 48, 0);
-    console.log(hotpink);
-    var turquoise = new Player("The turquoise square", "player-two", 0, "turquoise", 49, 0);
-    var playersArray = [hotpink, turquoise];
-
+    var pinkPlayer = new Player("Pink Player", "pink-player", 0, 0, "hotpink", 48, 0);
+    var greenPlayer = new Player("Green Player", "green-player", 1, 0, "turquoise", 49, 0);
+    var playersArray = [pinkPlayer, greenPlayer];
 
     var playerHTML = template({ players: playersArray });
-    console.log(playerHTML);
-
+    console.log(pinkPlayer.name);
 
     $('.playerEntry').append(playerHTML);
 
     //Function for players to drive
-    hotpink.drive();
-    turquoise.drive();
+    pinkPlayer.drive();
+    greenPlayer.drive();
 
-    hotpink.reset();
-    turquoise.reset();
-
-
+    //Event listener for player position resets
+    pinkPlayer.reset();
+    greenPlayer.reset();
 });
 
 //Player object constructor function
-function Player(name, id, wins, color, keyButton, initialPosition) {
+function Player(name, id, number, wins, color, keyButton) {
   this.name = name;
   this.id = id;
+  this.number = number;
   this.wins = wins;
   this.color = color;
   this.keyButton = keyButton;
 
   //function that moves player forward, checks for win, & updates number of player wins
   this.drive = function () {
-  $(window).on('keydown', function moveRight(event) {
-      var winner;
-      var leftPosition = $("#" + id).offset().left - ( ( $(window).width() - $('.track').width() ) / 2 ) ;
-      if (event.keyCode === keyButton) {
-         $("#" + id).animate({"left": "+=10" }, 0);
-            if(leftPosition >= $('.track').width() - $("#" + id).width()){
-              alert(name + " wins!");
-              wins++;
-              console.log(wins);
-            }
-         }
-      });
+    $(window).on('keydown', function moveRight(event) {
+        var winner;
+        var leftEdge = ( $(window).width() - $('.track').width() ) / 2;
+        var position = $("#" + id).offset().left -  leftEdge;
+        var endOfTrack = $('.track').width() - $("#" + id).width();
+        if (event.keyCode === keyButton) {
+           $("#" + id).animate({"left": "+=10" }, 0);
+           if(position >= endOfTrack){
+                alert(name + " wins!");
+                wins++;
+                console.log(wins);
+                $("#" + id).html('<h1 class="text-center">' + wins + '</h1>');
+
+                //Automatically sends cars back to front of track
+                $('.car').css({left: 0});
+
+                //hide cars to display win sequence
+                // $('.car').addClass('stop');
+              }
+           }
+    });
   };
 
-  //resets player position to start a new race
+  //Resets player position to start a new race
   this.reset = function() {
     $(".btn").on('click', function startOver(event) {
       $("#" + id).css({left: 0});
     });
-
   };
 }
+// END of Object Constructor

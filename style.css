@@ -1,26 +1,63 @@
 .track {
-    height: 150px;
+    height: 110px;
     background-color: white;;
-    width: 100%;
-    padding: 35px 0 ;
-    margin: 30px 0;
+    margin-bottom: 20px;
+    padding: 20px 10px;
 
 }
 
-
-
 h1 {
   color: white;
-  /*margin: 40px;*/
+  font-size: 30px;
+  font-family: 'Exo', sans-serif;
+  margin-bottom: 20px
+
+}
+
+h3 {
+  color: lightgrey;
+  left: 40%;
+  font-family: 'Exo', sans-serif;
+
 }
 
 body  {
   background: black;
+  color: lightblue;
+  font-family: 'Exo', sans-serif;
+}
+
+
+
+.win-count {
+  width: 30px;
+  height: 30px;
+}
+
+.stats {
+  display:block;
 }
 
 .car {
+    padding-top: 1px;
     position: relative;
     height: 70px;
     width: 70px;
+    border-top-right-radius: 35px;
+    border-bottom-right-radius: 35px;
+}
 
+.reset {
+  background-color: #34ACED;
+  color: white;
+  font-family: 'Exo', sans-serif
+}
+
+.reset:hover {
+  background-color: lightblue;
+  color: blue;
+}
+
+.hide {
+  display:none;
 }
