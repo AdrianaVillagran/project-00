@@ -24,7 +24,7 @@
 * A much more exciting winning sequence
 * Better styles & graphics
 * A more complex race track
-* Figure out a way to turn off the moveRight event listener and reset it
+* Figure a way to turn off the moveRight event listener when a player wins
 * Find a better way to deal with window responsiveness and how it effects the length of the track and the position of the cars.
 
 ---
