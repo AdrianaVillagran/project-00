@@ -47,16 +47,12 @@ function Player(name, id, number, wins, color, keyButton) {
            if(position >= endOfTrack){
                 alert(name + " wins!");
                 wins++;
-                console.log(wins);
                 $("#" + id).html('<h1 class="text-center">' + wins + '</h1>');
 
-                //Automatically sends cars back to front of track
-                $('.car').css({left: 0});
-
                 //hide cars to display win sequence
-                // $('.car').addClass('stop');
-              }
+                 $('.car').hide();
            }
+        }
     });
   };
 
@@ -64,6 +60,7 @@ function Player(name, id, number, wins, color, keyButton) {
   this.reset = function() {
     $(".btn").on('click', function startOver(event) {
       $("#" + id).css({left: 0});
+      $('.car').show();
     });
   };
 }

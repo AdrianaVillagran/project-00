@@ -27,17 +27,6 @@ body  {
   font-family: 'Exo', sans-serif;
 }
 
-
-
-.win-count {
-  width: 30px;
-  height: 30px;
-}
-
-.stats {
-  display:block;
-}
-
 .car {
     padding-top: 1px;
     position: relative;
