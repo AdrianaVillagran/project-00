@@ -1,6 +1,6 @@
 # Racing Game
 
-* **Objective:** Make a racing game where two players can race across the DOM by holding down a specific key.*
+* **Objective:** Make a racing game where two players can race across the DOM by holding down a specific key.
 
 ## Technologies Used
 
