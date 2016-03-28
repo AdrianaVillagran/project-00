@@ -47,12 +47,9 @@ function Player(name, id, number, wins, color, keyButton) {
                   alert(name + " wins!");
                   wins++;
                   $("#" + id).html('<h1 class="text-center">' + wins + '</h1>');
-
-                  //hide cars to display win sequence
-                   $('.car').hide();
              }
           }
-        
+
 
     });
   };
@@ -61,7 +58,6 @@ function Player(name, id, number, wins, color, keyButton) {
   this.reset = function() {
     $(".btn").on('click', function startOver(event) {
       $("#" + id).css({left: 0});
-      $('.car').show();
     });
   };
 }
