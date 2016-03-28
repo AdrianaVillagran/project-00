@@ -38,7 +38,6 @@ function Player(name, id, number, wins, color, keyButton) {
   //function that moves player forward, checks for win, & updates number of player wins
   this.drive = function () {
     $(window).on('keydown', function moveRight(event) {
-        var winner;
         var leftEdge = ( $(window).width() - $('.track').width() ) / 2;
         var position = $("#" + id).offset().left -  leftEdge;
         var endOfTrack = $('.track').width() - $("#" + id).width();

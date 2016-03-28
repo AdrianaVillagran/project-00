@@ -33,15 +33,15 @@
         <h1 class="text-center">Zero Race</h1>
         <p class="text-center"><span style="color:hotpink">Pink Player :</span>
           press 0 to move forward. <span style="color:turquoise">Green Player :
-          </span> press 1 to move forward. The number of wins per player will
-          update after a race is won. Press "reset" to start a new race.</p>
+          </span> press 1 to move forward. The number of wins is displayed on each
+          player and will update after a race is won. Press "reset" to start a new race.</p>
       </div>
     </div>
     <div class="playerEntry">
       <hr>
       <script id="player-template" type="text/x-handlebars-template">
         {{#each players}}
-          <div class="track col-xs-8 col-xs-offset-2">
+          <div class="track col-xs-8 col-xs-offset-">
             <div id="{{id}}" class="car" style="background-color:{{color}};">
               <h1 class="text-center">{{wins}}</h1>
             </div>
