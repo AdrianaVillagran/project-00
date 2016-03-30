@@ -22,8 +22,15 @@ $(document).on('ready', function() {
     greenPlayer.drive();
 
     //Event listener for player position resets
-    pinkPlayer.reset();
-    greenPlayer.reset();
+    resetRace();
+    function resetRace() {
+      $(".btn").on('click', function startOver(event) {
+        $(".car").css({left: 0});
+        pinkPlayer.drive();
+        greenPlayer.drive();
+      });
+
+    }
 });
 
 //Player object constructor function
@@ -44,11 +51,10 @@ function Player(name, id, number, wins, color, keyButton) {
         if (position <= endOfTrack && event.keyCode === keyButton) {
              $("#" + id).animate({"left": "+=10" }, 0);
              if(position >= endOfTrack){
-                  winner = name;
-                  alert(winner + " wins!");
+                  alert(name + " wins!");
                   wins++;
                   $("#" + id).html('<h1 class="text-center">' + wins + '</h1>');
-                
+                  $(window).off('keydown', moveRight());
              }
           }
 
@@ -56,11 +62,5 @@ function Player(name, id, number, wins, color, keyButton) {
     });
   };
 
-  //Resets player position to start a new race
-  this.reset = function() {
-    $(".btn").on('click', function startOver(event) {
-      $("#" + id).css({left: 0});
-    });
-  };
 }
 // END of Object Constructor
