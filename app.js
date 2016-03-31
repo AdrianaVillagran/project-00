@@ -1,4 +1,10 @@
+var leftEdge;
+var position;
+var endOfTrack;
+
+
 $(document).on('ready', function() {
+
 
 // check to make sure JS is loaded
     console.log('JS is loaded!');
@@ -18,16 +24,23 @@ $(document).on('ready', function() {
     $('.playerEntry').append(playerHTML);
 
     //Function for players to drive
-    pinkPlayer.drive();
-    greenPlayer.drive();
+    function startRace() {
+      $(window).on('keydown', function moveRight(event) {
+        if (event.keyCode === pinkPlayer.keyButton) {
+          pinkPlayer.drive();
+        } else if(event.keyCode === greenPlayer.keyButton){
+          greenPlayer.drive();
+        }
+      });
+    }
+    startRace();
 
     //Event listener for player position resets
     resetRace();
     function resetRace() {
       $(".btn").on('click', function startOver(event) {
         $(".car").css({left: 0});
-        pinkPlayer.drive();
-        greenPlayer.drive();
+        startRace();
       });
 
     }
@@ -44,22 +57,19 @@ function Player(name, id, number, wins, color, keyButton) {
 
   //function that moves player forward, checks for win, & updates number of player wins
   this.drive = function () {
-    $(window).on('keydown', function moveRight(event) {
-        var leftEdge = ( $(window).width() - $('.track').width() ) / 2;
-        var position = $("#" + id).offset().left -  leftEdge;
-        var endOfTrack = $('.track').width() - $("#" + id).width();
-        if (position <= endOfTrack && event.keyCode === keyButton) {
+    var leftEdge = ( $(window).width() - $('.track').width() ) / 2;
+    var position = $(".car").offset().left -  leftEdge;
+    var endOfTrack = $('.track').width() - $(".car").width();
+        if (position < endOfTrack + 5) {
              $("#" + id).animate({"left": "+=10" }, 0);
              if(position >= endOfTrack){
                   alert(name + " wins!");
                   wins++;
                   $("#" + id).html('<h1 class="text-center">' + wins + '</h1>');
-                  $(window).off('keydown', moveRight());
+                  $(window).off('keydown');
              }
           }
 
-
-    });
   };
 
 }
