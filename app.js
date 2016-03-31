@@ -57,18 +57,18 @@ function Player(name, id, number, wins, color, keyButton) {
 
   //function that moves player forward, checks for win, & updates number of player wins
   this.drive = function () {
-    var leftEdge = ( $(window).width() - $('.track').width() ) / 2;
-    var position = $(".car").offset().left -  leftEdge;
-    var endOfTrack = $('.track').width() - $(".car").width();
-        if (position < endOfTrack + 5) {
-             $("#" + id).animate({"left": "+=10" }, 0);
-             if(position >= endOfTrack){
-                  alert(name + " wins!");
-                  wins++;
-                  $("#" + id).html('<h1 class="text-center">' + wins + '</h1>');
-                  $(window).off('keydown');
-             }
+        var leftEdge = ( $(window).width() - $('.track').width() ) / 2;
+        var position = $("#" + id).offset().left -  leftEdge;
+        var endOfTrack = $('.track').width() - $("#" + id).width();
+        if (position < endOfTrack) {
+            $("#" + id).animate({"left": "+=10" }, 0);
+        } else if (position >= endOfTrack){
+            alert(name + " wins!");
+            wins++;
+            $("#" + id).html('<h1 class="text-center">' + wins + '</h1>');
+            $(window).off('keydown');
           }
+
 
   };
 
