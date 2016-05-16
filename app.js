@@ -27,6 +27,7 @@ $(document).on('ready', function() {
     function startRace() {
       $(window).on('keydown', function moveRight(event) {
         if (event.keyCode === pinkPlayer.keyButton) {
+          console.log(pinkPlayer.keyButton);
           pinkPlayer.drive();
         } else if(event.keyCode === greenPlayer.keyButton){
           greenPlayer.drive();
